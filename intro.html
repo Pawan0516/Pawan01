@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aniplex</title>
+    <script
+      src="https://kit.fontawesome.com/e1f2484151.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Home Section Styling */
+      .home {
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+      }
+      .home-content {
+        background: rgba(20, 30, 48, 0.7);
+        padding: 2.5rem 2rem;
+        border-radius: 18px;
+        box-shadow: 0 8px 32px #00c6ff33;
+        max-width: 600px;
+        margin: 2rem auto;
+      }
+      .home-content h1 {
+        font-size: 2.7rem;
+        color: #fff;
+        margin-bottom: 1rem;
+        letter-spacing: 2px;
+      }
+      .home-content h1 span {
+        color: #00c6ff;
+        text-shadow: 0 0 12px #00c6ff99;
+      }
+      .home-content p {
+        color: #eee;
+        font-size: 1.2rem;
+        line-height: 1.7;
+      }
+
+      /* About Section Styling */
+      .about {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40vh;
+        z-index: 2;
+        position: relative;
+      }
+      .about-content {
+        background: rgba(20, 30, 48, 0.7);
+        padding: 2rem 2rem;
+        border-radius: 14px;
+        box-shadow: 0 4px 24px #00c6ff22;
+        max-width: 600px;
+        margin: 2rem auto;
+        text-align: center;
+      }
+      .about-content h2 {
+        color: #00c6ff;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        letter-spacing: 1px;
+      }
+      .about-content p {
+        color: #eee;
+        font-size: 1.1rem;
+        line-height: 1.6;
+      }
+
+      /* Welcome Overlay Styles */
+      #welcome-overlay {
+        position: fixed;
+        z-index: 9999;
+        inset: 0;
+        background: linear-gradient(120deg, #0f2027 0%, #2c5364 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: overlayFadeIn 1s;
+        transition: opacity 1s;
+      }
+      #welcome-overlay.hide {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 1s;
+      }
+      @keyframes overlayFadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .welcome-content {
+        text-align: center;
+        color: #fff;
+        padding: 3rem 2rem;
+        border-radius: 20px;
+        background: rgba(20, 30, 48, 0.85);
+        box-shadow: 0 8px 32px #00c6ff44;
+        animation: popIn 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      }
+      @keyframes popIn {
+        0% {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        80% {
+          opacity: 1;
+          transform: scale(1.05);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      .welcome-content h1 {
+        font-size: 2.8rem;
+        margin-bottom: 1rem;
+        letter-spacing: 2px;
+      }
+      .welcome-content h1 span {
+        color: #00c6ff;
+        text-shadow: 0 0 18px #00c6ff99;
+      }
+      .welcome-quote {
+        font-size: 1.3rem;
+        margin-bottom: 2.2rem;
+        color: #aeefff;
+        font-style: italic;
+        letter-spacing: 1px;
+        animation: fadeInUp 1.5s;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .welcome-loader {
+        display: flex;
+        justify-content: center;
+        gap: 0.7rem;
+        margin-top: 1.5rem;
+      }
+      .welcome-loader span {
+        display: block;
+        width: 16px;
+        height: 16px;
+        background: linear-gradient(135deg, #00c6ff 60%, #00ffd0 100%);
+        border-radius: 50%;
+        animation: bounce 1s infinite alternate;
+      }
+      .welcome-loader span:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .welcome-loader span:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      @keyframes bounce {
+        from {
+          transform: translateY(0);
+        }
+        to {
+          transform: translateY(-18px);
+        }
+      }
+
+      /* End of Welcome Overlay Styles */
+      .welcome-owner {
+        margin-top: 1.2rem;
+        color: #ffeb3b;
+        font-size: 1.1rem;
+        font-family: "Poppins", Arial, sans-serif;
+        letter-spacing: 1px;
+        animation: fadeInUp 2s 1s both;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Welcome Overlay -->
+    <div id="welcome-overlay">
+      <div class="welcome-content">
+        <h1>Welcome to <span>Aniplex</span></h1>
+        <p class="welcome-quote">"Step into the world of anime magic!"</p>
+        <p class="welcome-owner">
+          A special welcome from the creator,<br /><strong>Pawan Parmar</strong>
+        </p>
+        <div class="welcome-loader">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live animated stars background -->
+    <div class="stars-bg" aria-hidden="true"></div>
+    <!-- Live floating aurora bands -->
+    <div class="aurora-bg" aria-hidden="true">
+      <div class="aurora-band aurora1"></div>
+      <div class="aurora-band aurora2"></div>
+      <div class="aurora-band aurora3"></div>
+    </div>
+
+    <!-- Header/Navbar -->
+    <header>
+      <a href="#" class="logo"><i class="fa-solid fa-skull"></i> Aniplex</a>
+      <nav class="navbar">
+        <a href="index.html">home</a>
+        <a href="#about">about</a>
+      </nav>
+      <div class="icons">
+        <i class="fas fa-bars" id="menu-bars"></i>
+        <i class="fas fa-search" id="search-icon"></i>
+        <a href="#" class="fas fa-heart"></a>
+      </div>
+    </header>
+
+    <!-- Home Section -->
+    <section class="home" id="home">
+      <div class="home-content">
+        <h1>Welcome to <span>Aniplex</span></h1>
+        <p>
+          Your gateway to the world of anime. Discover, explore, and enjoy your
+          favorite anime series and movies with a vibrant, animated experience.
+        </p>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+      <div class="about-content">
+        <h2>About Aniplex</h2>
+        <p>
+          Aniplex is a modern anime portal designed for fans by fans. Our
+          mission is to bring you the best anime content, from timeless classics
+          to the latest releases, all in one beautiful and interactive platform.
+          Enjoy curated collections, detailed info, and a stunning animated
+          interface.
+        </p>
+      </div>
+    </section>
+
+    <footer class="classic-footer">
+      <div class="footer-content">
+        <div class="footer-logo"><i class="fa-solid fa-skull"></i> Aniplex</div>
+        <nav class="footer-nav">
+          <a href="index.html">Home</a>
+          <a href="#about">About</a>
+        </nav>
+        <div class="footer-social">
+          <a href="#"><i class="fab fa-discord"></i></a>
+          <a href="#"><i class="fab fa-telegram"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="footer-copy">&copy; 2025 Aniplex. All rights reserved.</div>
+      </div>
+    </footer>
+    <script
+      src="https://unpkg.com/swiper@7/swiper-bundle.min.js"
+      defer
+    ></script>
+    <script src="script.js" defer></script>
+    <script>
+      // Welcome overlay logic
+      window.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+          document.getElementById("welcome-overlay").classList.add("hide");
+        }, 5000 + Math.random() * 5000); // 5-10 seconds
+      });
+    </script>
+  </body>
+</html>
